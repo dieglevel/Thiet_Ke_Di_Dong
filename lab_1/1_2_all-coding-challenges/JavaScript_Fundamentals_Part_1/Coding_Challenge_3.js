@@ -22,17 +22,36 @@ function averageScore(scores) {
 }
 
 function compareAverageScore(scores1, scores2) {
-    var averageScore1 = averageScore(scores1);
-    var averageScore2 = averageScore(scores2);
-    var averageScore1Higher = averageScore1 > averageScore2;
+  const averageScore1 = averageScore(scores1);
+  const averageScore2 = averageScore(scores2);
+  const averageScore1Higher =
+    averageScore1 > averageScore2;
 
-    if (averageScore1Higher) {
-        console.log(`Dolphins win with an average score of ${averageScore1}`);
-    } else if (averageScore2 > averageScore1) {
-        console.log(`Koalas win with an average score of ${averageScore2}`);
-    } else {
-        console.log(`It's a draw with an average score of ${averageScore1}`);
-    }
+  if (
+    averageScore1Higher &&
+    averageScore1 >= 100
+  ) {
+    console.log(
+      `Dolphins win with an average score of ${averageScore1}`
+    );
+  } else if (
+    averageScore2 > averageScore1 &&
+    averageScore2 >= 100
+  ) {
+    console.log(
+      `Koalas win with an average score of ${averageScore2}`
+    );
+  } else if (
+    averageScore1 === averageScore2 &&
+    averageScore1 >= 100 &&
+    averageScore2 >= 100
+  ) {
+    console.log(
+      `It's a draw with an average score of ${averageScore1}`
+    );
+  } else {
+    console.log(`No team wins the trophy`);
+  }
 }
 
 console.log("Data 1:");
