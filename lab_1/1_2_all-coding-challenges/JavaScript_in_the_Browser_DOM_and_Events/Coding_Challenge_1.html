@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body id="background">
+    <input type="text" id="input">
+    <button id="btn" onclick={handleClick()}>Click me!</button>
+
+    <script>
+        let secretScore = 20;
+
+        var input = document.getElementById("input");
+        var btn = document.getElementById("btn");
+        var body = document.getElementById("background")
+
+        console.log(input);
+        console.log(btn);
+        console.log(body);
+
+
+        function handleClick() {
+            let score = Number(input.value);
+            
+            if (score !== secretScore){
+                input.value = "";
+            }
+            else {
+                body.style.backgroundColor = "#222";
+            }
+        }
+
+    </script>
+</body>
+
+</html>
