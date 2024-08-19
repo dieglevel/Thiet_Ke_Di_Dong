@@ -33,7 +33,7 @@ console.log("Is Mark's BMI higher than John's? " + MarkHigherBMI);
 console.log("\n");
 
 var MarkBMI2 = BMI(Mark2.weight, Mark2.height);
-var JohnBMI2 = BMI(John2.weight, John2.height);
+var JohnBMI2 = BMI(John2.weight, John2.height); 
 var MarkHigherBMI2 = MarkBMI2 > JohnBMI2;
 
 console.log("Mark's BMI: " + MarkBMI2);
