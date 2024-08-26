@@ -12,7 +12,7 @@ Array.prototype.myReduce = function (
   return accumulator;
 };
 
-var sum = numbers.myReduce((acc, item) => {
+var sum = numbers.myReduce((acc, item) => {   
   return acc + item;
 }, 0);
 
