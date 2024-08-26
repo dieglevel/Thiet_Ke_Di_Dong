@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Challenge 3</title>
+    <style>
+        .parallel {
+            filter: blur(8px);
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // PART 1
+        async function loadNPause() {
+            try {
+                const img1 = await createImage('img/img-1.jpg');
+                console.log('Image 1 loaded');
+                await wait(2);
+                img1.style.display = 'none';
+
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        // PART 2
+        async function loadAll(imgArr) {
+            try {
+                const imgs = await Promise.all(imgArr.map(createImage));
+                console.log(imgs);
+                imgs.forEach(img => img.classList.add('parallel'));
+
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        function createImage(src) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.src = src;
+                img.addEventListener('load', () => {
+                    resolve(img);
+                });
+                img.addEventListener('error', () => {
+                    reject(new Error(`Failed to load image: ${src}`));
+                });
+            });
+        }
+
+        const imgArr = ['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg'];
+
+        loadNPause();
+        loadAll(imgArr);
+        
+    </script>
+</body>
+</html>
