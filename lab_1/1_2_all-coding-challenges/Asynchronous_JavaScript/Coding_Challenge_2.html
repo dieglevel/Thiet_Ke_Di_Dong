@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Loading Challenge</title>
+    <style>
+        .images {
+            display: flex;
+        }
+        .image {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="images">asd</div>
+
+    <script>
+        function wait(seconds) {
+            return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+        }
+
+        function createImage(imgPath) {
+            return new Promise((resolve, reject) => {
+                const image = document.createElement('img');
+                image.src = imgPath;
+
+                image.addEventListener('load', () => {
+                    document.querySelector('.images').appendChild(image);
+                    resolve(image);
+                });
+
+                image.addEventListener('error', () => {
+                    reject(new Error('Failed to load image'));
+                });
+            });
+        }
+
+        createImage('img/image1.jpg')
+            .then(image => {
+                wait(2)
+                    .then(() => {
+                        image.style.display = 'none';
+                        return createImage('img/image2.jpg');
+                    })
+                    .then(image => {
+                        wait(2)
+                            .then(() => {
+                                image.style.display = 'none';
+                            });
+                    });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+</body>
+</html>
