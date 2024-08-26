@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asynchronous JavaScript Coding Challenge 1</title>
+    <script>
+        function whereAmI(lat, lng) {
+            fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Unable to fetch location data');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(`You are in ${data.city}, ${data.country}`);
+                    return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Unable to fetch country data');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(`Country: ${data[0].name.common}`);
+                })
+                .catch(error => {
+                    console.log(error.message);
+                });
+        }
+
+        whereAmI(52.508, 13.381);
+    </script>
+</head>
+<body>
+</body>
+</html>
